@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 });
 router.get('/personero', async(req, res) => {
     // const datos = await pool.query('select * from candidatos');
-    console.log(datos);
+    // console.log(datos);
     res.render('forms/forms/view_personero');
 });
 router.post('/personero', (req, res) => {

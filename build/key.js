@@ -1,8 +1,8 @@
-// module.exports = {
-//     database: {
-//         host: 'localhost',
-//         user: 'root',
-//         password: '',
-//         database: 'colegiojhl'
-//     }
-// };
+module.exports = {
+  database: {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'colegiojhl'
+  }
+};

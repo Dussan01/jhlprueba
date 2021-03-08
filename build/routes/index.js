@@ -4,27 +4,74 @@ const router = express.Router();
 
 const pool = require('../database');
 
+const passport = require('passport');
+
+const {
+  isLoggedIn
+} = require('../lib/auth');
+
 router.get('/', (req, res) => {
-    res.render('layouts/principal');
+  res.render('layouts/principal');
 });
-router.get('/personero', async(req, res) => {
-    // const datos = await pool.query('select * from candidatos');
-    // console.log(datos);
-    res.render('forms/forms/view_personero');
+router.post('/signin', (req, res, next) => {
+  res.redirect('/personero');
 });
-router.post('/personero', (req, res) => {
-    res.render('forms/view_personero');
+router.get('/personero', async (req, res) => {
+  const datos = await pool.query('select * from candidatos where cargo = "Personero"');
+  console.log(datos);
+  res.render('forms/view_personero', {
+    datos
+  });
 });
-router.get('/contralor', (req, res) => {
-    res.render('forms/view_contralor');
+router.post('/personero/:idPersonero', async (req, res) => {
+  const seleccion = req.params.idPersonero;
+  const datos = await pool.query('select * from candidatos where idCandidato = ?', seleccion);
+  let cantidadVotos;
+  datos.forEach(element => {
+    const votos = element.cantidad_votos;
+    cantidadVotos = votos + 1;
+  });
+  console.log(cantidadVotos);
+  await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idPersonero]);
+  res.redirect('/contralor');
 });
-router.post('/contralor', (req, res) => {
-    res.render('forms/view_contralor');
+router.get('/contralor', async (req, res) => {
+  const datos = await pool.query('select * from candidatos where cargo = "Contralor"');
+  res.render('forms/view_contralor', {
+    datos
+  });
 });
-router.get('/representante', (req, res) => {
-    res.render('forms/view_representante');
+router.post('/contralor/:idContralor', async (req, res) => {
+  const seleccion = req.params.idContralor;
+  const datos = await pool.query('select * from candidatos where idCandidato = ?', seleccion);
+  let cantidadVotos;
+  datos.forEach(element => {
+    const votos = element.cantidad_votos;
+    cantidadVotos = votos + 1;
+  });
+  console.log(cantidadVotos);
+  await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idPersonero]);
+  res.redirect('/representante');
 });
-router.post('/representante', (req, res) => {
-    res.render('forms/representante');
+router.get('/representante', async (req, res) => {
+  const datos = await pool.query('select * from candidatos where cargo = "Representante"');
+  res.render('forms/view_representante', {
+    datos
+  });
+});
+router.post('/representante/:idRepresentante', async (req, res) => {
+  const seleccion = req.params.idRepresentante;
+  const datos = await pool.query('select * from candidatos where idCandidato = ?', seleccion);
+  let cantidadVotos;
+  datos.forEach(element => {
+    const votos = element.cantidad_votos;
+    cantidadVotos = votos + 1;
+  });
+  console.log(cantidadVotos);
+  await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idPersonero]);
+  res.redirect('/final');
+});
+router.get('/final', (req, res) => {
+  res.render('view_final');
 });
 module.exports = router;

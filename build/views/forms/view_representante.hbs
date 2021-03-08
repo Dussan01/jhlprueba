@@ -2,32 +2,21 @@
 <div class="content ">
     <div class="row m-3 d-flex justify-content-center m-3">
 
+         {{#each datos}}
         <div class="card m-3" style="width: 18rem;">
-            <img class="card-img-top p-3" src="/img/customLogo.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title  d-flex   justify-content-center ">Grado 601</h5>
-                <p class="card-text ">KEVIN ANDRES DUSSAN FIERRO</p>
-                <a href="#" class="btn btn-primary  d-flex justify-content-center">Votar</a>
-            </div>
+            <img class="card-img-top p-3" src="/img/{{idCandidato}}.png" alt="Card image cap">
+            <form action="/representante/{{idCandidato}}" method="post">
+                <div class="card-body">
+                    <h5 class="card-title  d-flex   justify-content-center ">Grado {{grado}}</h5>
+                    <p class="card-text ">{{nombre}} {{nombre1}} {{apellido}} {{apellido1}}</p>
+                    {{!-- <a class="btn btn-primary  d-flex justify-content-center">Votar</a> --}}
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="submit" class="btn btn-primary  d-flex justify-content-center">Elegir</button>
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class="card m-3" style="width: 18rem;">
-            <img class="card-img-top p-3" src="/img/customLogo.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title  d-flex   justify-content-center ">Grado 601</h5>
-                <p class="card-text ">KEVIN ANDRES DUSSAN FIERRO</p>
-                <a href="#" class="btn btn-primary  d-flex justify-content-center">Votar</a>
-            </div>
-        </div>
-
-        <div class="card m-3" style="width: 18rem;">
-            <img class="card-img-top p-3" src="/img/customLogo.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title  d-flex   justify-content-center ">Grado 601</h5>
-                <p class="card-text ">KEVIN ANDRES DUSSAN FIERRO</p>
-                <a href="#" class="btn btn-primary  d-flex justify-content-center">Votar</a>
-            </div>
-        </div>
+        {{/each}}
 
     </div>
 

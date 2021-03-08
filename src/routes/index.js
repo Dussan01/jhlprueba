@@ -30,9 +30,11 @@ router.post('/signin', async(req, res) => {
 
 
 router.get('/personero', async(req, res) => {
+    console.log(id)
     if (currentPersonero == '0') {
+        const perfil = await pool.query(`SELECT * FROM usuarios where identificacion = ${id}`)
         const datos = await pool.query('select * from candidatos where cargo = "Personero"');
-        res.render('forms/view_personero', { datos })
+        res.render('forms/view_personero', { datos, perfil })
     } else if (currentPersonero == '1') {
         res.redirect('/contralor')
     } else {
@@ -55,8 +57,9 @@ router.post('/personero/:idPersonero', async(req, res) => {
 
 router.get('/contralor', async(req, res) => {
     if (currentContralor == 0) {
+        const perfil = await pool.query(`SELECT * FROM usuarios where identificacion = ${id}`)
         const datos = await pool.query('select * from candidatos where cargo = "Contralor"');
-        res.render('forms/view_contralor', { datos })
+        res.render('forms/view_contralor', { datos, perfil })
     } else if (currentContralor == 1) {
         res.redirect('/representante')
     } else {
@@ -81,12 +84,13 @@ router.get('/representante', async(req, res) => {
     if (currentRepresentante == 0) {
         // SELECT grado FROM `usuarios` WHERE identificacion = "1079185089"
         let codigoCurso;
+        const perfil = await pool.query(`SELECT * FROM usuarios where identificacion = ${id}`)
         const curso = await pool.query('select grado from usuarios where identificacion = ?', [id])
         curso.forEach(element => {
             codigoCurso = element.grado
         });
         const datos = await pool.query('select * from candidatos where cargo = "Representante" and curso = ?', [codigoCurso]);
-        res.render('forms/view_representante', { datos })
+        res.render('forms/view_representante', { datos, perfil })
     } else if (currentRepresentante == 1) {
         res.redirect('/final')
     } else {

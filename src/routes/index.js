@@ -103,11 +103,27 @@ router.post('/representante/:idRepresentante', async(req, res) => {
         const votos = element.cantidad_votos
         cantidadVotos = votos + 1;
     });
-    await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idPersonero])
+    await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idRepresentante])
     await pool.query("update usuarios set status_representante = 1 where identificacion = ?", [id])
 
     res.redirect('/final')
 
+});
+
+router.get('/resultados', async(req, res) => {
+    const Personero = await pool.query('select * from candidatos where cargo = "Personero"');
+    const Contralor = await pool.query('select * from candidatos where cargo = "Contralor"');
+    const Representante3 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 3');
+    const Representante4 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 4');
+    const Representante5 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 5');
+    const Representante6 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 6');
+    const Representante7 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 7');
+    const Representante8 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 8');
+    const Representante9 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 9');
+    const Representante10 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 10');
+    const Representante11 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 11');
+
+    res.render('dashboard/view_resultados', { Personero, Contralor, Representante3, Representante4, Representante5, Representante6, Representante7, Representante8, Representante9, Representante10, Representante11 })
 });
 
 

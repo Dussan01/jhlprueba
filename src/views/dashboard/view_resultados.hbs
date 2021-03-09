@@ -1,0 +1,385 @@
+<div class="container">
+    <br>
+    <h1>Resultados <small></h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personero</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#each Personero}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Contralor</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Contralor}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+{{!-- Representantes --}}
+         <hr width=1000>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 3°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante3}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 4°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante4}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+         <hr width=1000>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 5°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante5}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 6°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante6}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+         <hr width=1000>
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 7°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante7}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 8°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante8}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+         <hr width=1000>
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 9°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante9}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 10°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante10}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+         <hr width=1000>
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Representante 11°</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter"
+                            data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Grado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Representante11}}
+                        <tr>
+                            <td>{{grado}}</td>
+                            <td>{{nombre}} {{nombre1}}</td>
+                            <td>{{apellido}} {{apellido1}}</td>
+                            <td>{{cantidad_votos}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+    </div>
+</div>

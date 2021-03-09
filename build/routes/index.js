@@ -33,8 +33,6 @@ router.post('/signin', async (req, res) => {
   }
 });
 router.get('/personero', async (req, res) => {
-  console.log(id);
-
   if (currentPersonero == '0') {
     const perfil = await pool.query(`SELECT * FROM usuarios where identificacion = ${id}`);
     const datos = await pool.query('select * from candidatos where cargo = "Personero"');
@@ -82,8 +80,7 @@ router.post('/contralor/:idContralor', async (req, res) => {
     const votos = element.cantidad_votos;
     cantidadVotos = votos + 1;
   });
-  console.log(cantidadVotos);
-  await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idPersonero]);
+  await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idContralor]);
   await pool.query("update usuarios set status_contralor = 1 where identificacion = ?", [id]);
   res.redirect('/representante');
 });
@@ -115,7 +112,6 @@ router.post('/representante/:idRepresentante', async (req, res) => {
     const votos = element.cantidad_votos;
     cantidadVotos = votos + 1;
   });
-  console.log(cantidadVotos);
   await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idPersonero]);
   await pool.query("update usuarios set status_representante = 1 where identificacion = ?", [id]);
   res.redirect('/final');

@@ -11,11 +11,26 @@ const {
 } = require('../lib/auth');
 
 let id;
+let idConsejo;
 let currentPersonero;
 let currentContralor;
 let currentRepresentante;
 router.get('/', (req, res) => {
-  res.render('layouts/principal');
+  const IniHora = "08";
+  const IniMinutos = "00";
+  const finHora = "16";
+  const finMinutos = "00";
+  var fechaHora = new Date();
+  var horas = fechaHora.getHours();
+  var minutos = fechaHora.getMinutes();
+
+  if (horas == IniHora && minutos == IniMinutos) {
+    res.render('layouts/principal');
+  } else if (horas == finHora && minutos == finMinutos) {
+    res.redirect('/final');
+  } else {
+    res.render('view_bienvenido');
+  }
 });
 router.post('/signin', async (req, res) => {
   const datos = await pool.query(`SELECT * FROM usuarios where identificacion = ${req.body.username}`);
@@ -112,9 +127,50 @@ router.post('/representante/:idRepresentante', async (req, res) => {
     const votos = element.cantidad_votos;
     cantidadVotos = votos + 1;
   });
-  await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idPersonero]);
+  await pool.query(`UPDATE candidatos set cantidad_votos = ? where idCandidato = ?`, [cantidadVotos, req.params.idRepresentante]);
   await pool.query("update usuarios set status_representante = 1 where identificacion = ?", [id]);
   res.redirect('/final');
+});
+router.get('/resultados', async (req, res) => {
+  res.render('dashboard/view_index');
+});
+router.post('/resultados', async (req, res) => {
+  idConsejo = req.body.username;
+  const perfil = await pool.query(`SELECT * FROM consejo where identificacion = ${idConsejo}`);
+
+  if (perfil) {
+    res.redirect('/estadisticas');
+  } else {
+    res.render('dashboard/view_index');
+  }
+});
+router.get('/estadisticas', async (req, res) => {
+  const datosConsejo = await pool.query(`select * from consejo where identificacion = ${idConsejo}`);
+  const Personero = await pool.query('select * from candidatos where cargo = "Personero"');
+  const Contralor = await pool.query('select * from candidatos where cargo = "Contralor"');
+  const Representante3 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 3');
+  const Representante4 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 4');
+  const Representante5 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 5');
+  const Representante6 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 6');
+  const Representante7 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 7');
+  const Representante8 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 8');
+  const Representante9 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 9');
+  const Representante10 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 10');
+  const Representante11 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 11');
+  res.render('dashboard/view_resultados', {
+    Personero,
+    Contralor,
+    Representante3,
+    Representante4,
+    Representante5,
+    Representante6,
+    Representante7,
+    Representante8,
+    Representante9,
+    Representante10,
+    Representante11,
+    datosConsejo
+  });
 });
 router.get('/final', (req, res) => {
   res.render('view_final');

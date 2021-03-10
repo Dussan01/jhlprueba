@@ -5,12 +5,28 @@ const passport = require('passport');
 const { isLoggedIn, } = require('../lib/auth');
 
 let id;
+let idConsejo;
 let currentPersonero;
 let currentContralor;
 let currentRepresentante;
 
 router.get('/', (req, res) => {
-    res.render('layouts/principal')
+    const IniHora = 08;
+    const IniMinutos = 00;
+    const finHora = 16;
+    const finMinutos = 00;
+    var fechaHora = new Date();
+    var horas = fechaHora.getHours();
+    var minutos = fechaHora.getMinutes();
+    if (horas == "08" && minutos == "00") {
+        res.render('layouts/principal')
+    } else if (horas == "16" && minutos == "00") {
+        res.redirect('/final')
+    } else {
+
+        res.render('view_bienvenido')
+    }
+
 });
 
 router.post('/signin', async(req, res) => {
@@ -111,6 +127,21 @@ router.post('/representante/:idRepresentante', async(req, res) => {
 });
 
 router.get('/resultados', async(req, res) => {
+    res.render('dashboard/view_index')
+});
+router.post('/resultados', async(req, res) => {
+    idConsejo = req.body.username
+    const perfil = await pool.query(`SELECT * FROM consejo where identificacion = ${idConsejo}`)
+    if (perfil) {
+        res.redirect('/estadisticas')
+    } else {
+        res.render('dashboard/view_index')
+
+    }
+});
+
+router.get('/estadisticas', async(req, res) => {
+    const datosConsejo = await pool.query(`select * from consejo where identificacion = ${idConsejo}`, )
     const Personero = await pool.query('select * from candidatos where cargo = "Personero"');
     const Contralor = await pool.query('select * from candidatos where cargo = "Contralor"');
     const Representante3 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 3');
@@ -123,7 +154,7 @@ router.get('/resultados', async(req, res) => {
     const Representante10 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 10');
     const Representante11 = await pool.query('select * from candidatos where cargo = "Representante" and curso = 11');
 
-    res.render('dashboard/view_resultados', { Personero, Contralor, Representante3, Representante4, Representante5, Representante6, Representante7, Representante8, Representante9, Representante10, Representante11 })
+    res.render('dashboard/view_resultados', { Personero, Contralor, Representante3, Representante4, Representante5, Representante6, Representante7, Representante8, Representante9, Representante10, Representante11, datosConsejo })
 });
 
 
